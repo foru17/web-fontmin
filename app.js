@@ -17,6 +17,7 @@ var upload = multer({ storage: storage });
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var uploadFont = require('./routes/upload-font');
+var getFont = require('./routes/get-font');
 
 var app = express();
 
@@ -39,6 +40,7 @@ if (app.get('env') === 'development') {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/upload-font', upload.any(), uploadFont);
+app.use('/api/v1/get-font', upload.any(), getFont);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
