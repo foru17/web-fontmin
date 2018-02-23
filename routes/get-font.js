@@ -11,7 +11,6 @@ var uuid = require('node-uuid');
 var EasyZip = require('easy-zip').EasyZip;
 
 router.post('/', function(req, res, next) {
-  console.log('接口测试')
   console.log(req.body)
   console.log('读取文件:' + req.body.font + '.ttf');
   console.log(path.join(process.cwd(), 'public', 'uploads', req.body.font + '.ttf'))
@@ -54,7 +53,8 @@ function handleFont(req, res) {
       .use(Fontmin.ttf2svg()) // svg 转换插件
       .use(Fontmin.css({
         fontPath: fontPath,
-        asFileName: true
+        asFileName: true,
+        base64: true, 
       })) // css 生成插件
       .dest(dest);
   } else {
@@ -67,7 +67,8 @@ function handleFont(req, res) {
       .use(Fontmin.ttf2svg()) // svg 转换插件
       .use(Fontmin.css({
         fontPath: fontPath,
-        asFileName: true
+        asFileName: true,
+        base64: true, 
       })) // css 生成插件
       .dest(dest);
 
